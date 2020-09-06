@@ -1,15 +1,24 @@
 ﻿using BoardgameMeetup.Api.Models.Meetup;
+using BoardgameMeetup.Data.Access.DAL;
 using BoardgameMeetup.Data.Models;
+using BoardgameMeetup.Security;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BoardgameMeetup.Queries.Queries
 {
-    class MeetupQueryProccessor : IMeetupQueryProcessor
+    public class MeetupQueryProccessor : IMeetupQueryProcessor
     {
+        private readonly IUnitOfWork _unitOfOfWork;
+        private readonly ISecurityContext _securityContext;
+
+        public MeetupQueryProccessor(IUnitOfWork unitOfOfWork, ISecurityContext securityContext)
+        {
+            _unitOfOfWork = unitOfOfWork;
+            _securityContext = securityContext;
+        }
+
         public Task<Meetup> Create(CreateMeetupModel model)
         {
             throw new NotImplementedException();
