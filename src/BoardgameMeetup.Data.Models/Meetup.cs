@@ -13,6 +13,7 @@ namespace BoardgameMeetup.Data.Models
         public int ParticipantCount { get; set; }
         public string Place { get; set; }
         public int Plz { get; set; }
+        public bool IsCancled { get; set; }
 
         public Guid UserId { get; set; }
         public virtual User User { get; set; }
