@@ -252,5 +252,64 @@ namespace BoardgameMeetup.Queries.Tests
                 update.Should().Throw<NotFoundException>();
             }
         }
+
+        public class Delete : MeetupQueryProcessorTests
+        {
+            [Fact]
+            [Description("Deleting meetups sets them as cancled")]
+            public async Task MarkAsCancled()
+            {
+                //Arrange
+                var meetup = new Meetup
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = _currentUser.Id
+                };
+                _meetupList.Add(meetup);
+
+                //Act
+                await _query.Delete(meetup.Id);
+
+                //Assert
+                meetup.IsCancled.Should().BeTrue();
+
+                _unitOfWork.Verify(x => x.CommitAsync());
+            }
+
+            [Fact]
+            [Description("Throws exception if meetup to delete belongs to another user")]
+            public void ThrowExceptionIfItemIsNotBelongTheUser()
+            {
+                //Arrange
+                var meetup = new Meetup
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = Guid.NewGuid()
+                };
+                _meetupList.Add(meetup);
+
+                Action delete = () =>
+                {
+                    _query.Delete(meetup.Id).Wait();
+                };
+
+                //Act and Assert
+                delete.Should().Throw<NotFoundException>();
+            }
+
+            [Fact]
+            [Description("Throws exception if meetup to delete does not exist anymore")]
+            public void ThrowExceptionIfItemIsNotFound()
+            {
+                //Arrange
+                Action delete = () =>
+                {
+                    _query.Delete(Guid.NewGuid()).Wait();
+                };
+
+                //Act and Assert
+                delete.Should().Throw<NotFoundException>();
+            }
+        }
     }
 }
