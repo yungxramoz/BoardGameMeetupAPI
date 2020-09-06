@@ -9,9 +9,9 @@ namespace BoardgameMeetup.Data.Models
         public Guid Id { get; set; }
 
         public Guid UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         public Guid MeetupId { get; set; }
-        public Meetup Meetup { get; set; }
+        public virtual Meetup Meetup { get; set; }
     }
 }
