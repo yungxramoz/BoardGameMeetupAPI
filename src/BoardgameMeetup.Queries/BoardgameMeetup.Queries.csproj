@@ -4,4 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BoardgameMeetup.Api.Models\BoardgameMeetup.Api.Models.csproj" />
+    <ProjectReference Include="..\BoardgameMeetup.Data.Models\BoardgameMeetup.Data.Models.csproj" />
+  </ItemGroup>
+
 </Project>
