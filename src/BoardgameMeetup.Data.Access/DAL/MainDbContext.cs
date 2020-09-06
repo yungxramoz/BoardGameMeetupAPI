@@ -14,7 +14,12 @@ namespace BoardgameMeetup.Data.Access.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var mappings = MappingsHelper
+            var mappings = MappingsHelper.GetMainMappings();
+
+            foreach (var mapping in mappings)
+            {
+                mapping.Visit(modelBuilder);
+            }
         }
     }
 }
