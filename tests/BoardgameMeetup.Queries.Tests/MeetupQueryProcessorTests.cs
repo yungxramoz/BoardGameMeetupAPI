@@ -1,4 +1,5 @@
 using BoardgameMeetup.Api.Common.Exceptions;
+using BoardgameMeetup.Api.Models.Meetup;
 using BoardgameMeetup.Data.Access.DAL;
 using BoardgameMeetup.Data.Models;
 using BoardgameMeetup.Queries.Queries;
@@ -9,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace BoardgameMeetup.Queries.Tests
@@ -159,6 +161,95 @@ namespace BoardgameMeetup.Queries.Tests
 
                 //Act and Assert
                 get.Should().Throw<NotFoundException>();
+            }
+        }
+
+        public class Create : MeetupQueryProcessorTests
+        {
+            [Fact]
+            [Description("Saves new meetup correctly")]
+            public async Task SaveNew()
+            {
+                //Arrange
+                var model = new CreateMeetupModel
+                {
+                    Title = "Title",
+                    Description = "Description",
+                    Date = DateTime.UtcNow,
+                    ParticipantCount = 4,
+                    Place = "Place",
+                    Plz = 9999
+                };
+
+                //Act
+                var result = await _query.Create(model);
+
+                //Assert
+                result.Title.Should().Be(model.Title);
+                result.Description.Should().Be(model.Description);
+                result.Date.Should().Be(model.Date);
+                result.ParticipantCount.Should().Be(model.ParticipantCount);
+                result.Place.Should().Be(model.Place);
+                result.Plz.Should().Be(model.Plz);
+
+                _unitOfWork.Verify(x => x.Add(result));
+                _unitOfWork.Verify(x => x.CommitAsync());
+            }
+        }
+
+        public class Update : MeetupQueryProcessorTests
+        {
+            [Fact]
+            [Description("Updates an existing meetup correctly")]
+            public async Task FieldsCorrect()
+            {
+                //Arrange
+                var meetup = new Meetup
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = _currentUser.Id
+                };
+                _meetupList.Add(meetup);
+
+                var model = new UpdateMeetupModel
+                {
+                    Title = "Title",
+                    Description = "Description",
+                    Date = DateTime.UtcNow,
+                    ParticipantCount = 4,
+                    Place = "Place",
+                    Plz = 9999
+                };
+
+                //Act
+                var result = await _query.Update(meetup.Id, model);
+
+                //Assert
+                result.Should().Be(meetup);
+
+                result.Title.Should().Be(model.Title);
+                result.Description.Should().Be(model.Description);
+                result.Date.Should().Be(model.Date);
+                result.ParticipantCount.Should().Be(model.ParticipantCount);
+                result.Place.Should().Be(model.Place);
+                result.Plz.Should().Be(model.Plz);
+
+                _unitOfWork.Verify(x => x.CommitAsync());
+            }
+
+            [Fact]
+            [Description("Throws exception if meetup with passed id not found on update")]
+            public void ThrowExceptionIfItemIsNotFound()
+            {
+                //Arrange
+                Action update = () =>
+                {
+                    var result = _query.Update(Guid.NewGuid(),
+                        new UpdateMeetupModel()).Result;
+                };
+
+                //Act and Assert
+                update.Should().Throw<NotFoundException>();
             }
         }
     }
