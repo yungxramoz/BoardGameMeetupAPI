@@ -4,8 +4,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:62713",
-      "sslPort": 44335
+      "applicationUrl": "http://localhost:63453",
+      "sslPort": 44334
     }
   },
   "profiles": {
@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "BoardGameMeetupAPI": {
+    "BoardgameMeetup": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "weatherforecast",

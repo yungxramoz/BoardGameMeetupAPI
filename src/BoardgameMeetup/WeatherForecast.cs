@@ -1,6 +1,6 @@
 using System;
 
-namespace BoardGameMeetupAPI
+namespace BoardgameMeetup
 {
     public class WeatherForecast
     {

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace BoardGameMeetupAPI.Controllers
+namespace BoardgameMeetup.Controllers
 {
     [ApiController]
     [Route("[controller]")]
