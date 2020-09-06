@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoardgameMeetup.Security", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoardgameMeetup.Api.IntegrationTests", "tests\BoardgameMeetup.Api.IntegrationTests\BoardgameMeetup.Api.IntegrationTests.csproj", "{A35DE4BD-7F34-42B9-AEA5-8F46F91537D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardgameMeetup.Queries.Tests", "tests\BoardgameMeetup.Queries.Tests\BoardgameMeetup.Queries.Tests.csproj", "{5EA4AE87-9C2E-40A4-A76A-874FEFB1519B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{A35DE4BD-7F34-42B9-AEA5-8F46F91537D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A35DE4BD-7F34-42B9-AEA5-8F46F91537D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A35DE4BD-7F34-42B9-AEA5-8F46F91537D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EA4AE87-9C2E-40A4-A76A-874FEFB1519B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EA4AE87-9C2E-40A4-A76A-874FEFB1519B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EA4AE87-9C2E-40A4-A76A-874FEFB1519B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EA4AE87-9C2E-40A4-A76A-874FEFB1519B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{3D406F3F-5DE0-4215-B45B-3881168D863A} = {1B22C45F-017D-4D9E-B554-A8CD295E8AB0}
 		{7DE56C6A-602E-4AB6-82E7-A81C973B355E} = {1B22C45F-017D-4D9E-B554-A8CD295E8AB0}
 		{A35DE4BD-7F34-42B9-AEA5-8F46F91537D5} = {7FEF8741-4486-4482-AC05-5582DCD9EF0A}
+		{5EA4AE87-9C2E-40A4-A76A-874FEFB1519B} = {7FEF8741-4486-4482-AC05-5582DCD9EF0A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {97824464-A02D-4D1C-903D-C3F49E8DA065}
