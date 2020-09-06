@@ -24,7 +24,7 @@ namespace BoardgameMeetup.Queries.Queries
             throw new NotImplementedException();
         }
 
-        public Task Delete(int id)
+        public Task Delete(Guid id)
         {
             throw new NotImplementedException();
         }
@@ -34,12 +34,12 @@ namespace BoardgameMeetup.Queries.Queries
             throw new NotImplementedException();
         }
 
-        public Meetup Get(int id)
+        public Meetup Get(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Meetup> Update(int id, UpdateMeetupModel model)
+        public Task<Meetup> Update(Guid id, UpdateMeetupModel model)
         {
             throw new NotImplementedException();
         }
