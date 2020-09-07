@@ -53,12 +53,14 @@ namespace BoardgameMeetup.Queries.Tests
                 //Arrange
                 _meetupList.Add(new Meetup
                 {
-                    UserId = _currentUser.Id
+                    UserId = _currentUser.Id,
+                    Date = DateTime.UtcNow.AddDays(1)
                 });
 
                 _meetupList.Add(new Meetup
                 {
-                    UserId = Guid.NewGuid()
+                    UserId = Guid.NewGuid(),
+                    Date = DateTime.UtcNow.AddDays(1)
                 });
 
                 //Act
@@ -66,29 +68,6 @@ namespace BoardgameMeetup.Queries.Tests
 
                 //Assert
                 result.Count().Should().Be(2);
-            }
-
-            [Fact]
-            [Description("Returns meetups only of a specific user")]
-            public void ReturnByUser()
-            {
-                //Arrange
-                _meetupList.Add(new Meetup
-                {
-                    UserId = _currentUser.Id
-                });
-
-                _meetupList.Add(new Meetup
-                {
-                    UserId = Guid.NewGuid()
-                });
-
-                //Act
-                var result = _query.Get().ToList();
-
-                //Assert
-                result.Count().Should().Be(1);
-                result[0].UserId.Should().Be(_currentUser.Id);
             }
 
             [Fact]
@@ -123,14 +102,16 @@ namespace BoardgameMeetup.Queries.Tests
                 var meetup = new Meetup
                 {
                     Id = Guid.NewGuid(),
-                    UserId = _currentUser.Id
+                    UserId = _currentUser.Id,
+                    Date = DateTime.UtcNow.AddDays(1)
                 };
 
                 _meetupList.Add(meetup);
 
                 _meetupList.Add(new Meetup
                 {
-                    UserId = Guid.NewGuid()
+                    UserId = Guid.NewGuid(),
+                    Date = DateTime.UtcNow.AddDays(1)
                 });
 
                 //Act
@@ -207,7 +188,8 @@ namespace BoardgameMeetup.Queries.Tests
                 var meetup = new Meetup
                 {
                     Id = Guid.NewGuid(),
-                    UserId = _currentUser.Id
+                    UserId = _currentUser.Id,
+                    Date = DateTime.UtcNow.AddDays(1)
                 };
                 _meetupList.Add(meetup);
 
@@ -263,7 +245,8 @@ namespace BoardgameMeetup.Queries.Tests
                 var meetup = new Meetup
                 {
                     Id = Guid.NewGuid(),
-                    UserId = _currentUser.Id
+                    UserId = _currentUser.Id,
+                    Date = DateTime.UtcNow.AddDays(1)
                 };
                 _meetupList.Add(meetup);
 
