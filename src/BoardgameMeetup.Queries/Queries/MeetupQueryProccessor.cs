@@ -1,4 +1,5 @@
-﻿using BoardgameMeetup.Api.Models.Meetup;
+﻿using BoardgameMeetup.Api.Common.Exceptions;
+using BoardgameMeetup.Api.Models.Meetup;
 using BoardgameMeetup.Data.Access.DAL;
 using BoardgameMeetup.Data.Models;
 using BoardgameMeetup.Security;
@@ -19,29 +20,92 @@ namespace BoardgameMeetup.Queries.Queries
             _securityContext = securityContext;
         }
 
-        public Task<Meetup> Create(CreateMeetupModel model)
+        public async Task<Meetup> Create(CreateMeetupModel model)
         {
-            throw new NotImplementedException();
+            var meetup = new Meetup
+            {
+                UserId = _securityContext.User.Id,
+                Title = model.Title,
+                Description = model.Description,
+                Date = model.Date,
+                ParticipantCount = model.ParticipantCount,
+                Place = model.Place,
+                Plz = model.Plz
+            };
+
+            _unitOfOfWork.Add(meetup);
+            await _unitOfOfWork.CommitAsync();
+
+            return meetup;
         }
 
-        public Task Delete(Guid id)
+        public async Task Delete(Guid id)
         {
-            throw new NotImplementedException();
+            var meetup = GetQuery().FirstOrDefault(x => x.Id == id);
+
+            if(meetup == null)
+            {
+                throw new NotFoundException("Meetup [" + id + "] not found");
+            }
+
+            if (meetup.IsCancled)
+            {
+                return;
+            }
+
+            meetup.IsCancled = true;
+            await _unitOfOfWork.CommitAsync();
         }
 
         public IQueryable<Meetup> Get()
         {
-            throw new NotImplementedException();
+            var query = GetQuery();
+            return query;
         }
 
         public Meetup Get(Guid id)
         {
-            throw new NotImplementedException();
+            var meetup = GetQuery().FirstOrDefault(x => x.Id == id);
+
+            if(meetup == null)
+            {
+                throw new NotFoundException("Meetup[" + id + "] not found");
+            }
+
+            return meetup;
         }
 
-        public Task<Meetup> Update(Guid id, UpdateMeetupModel model)
+        public async Task<Meetup> Update(Guid id, UpdateMeetupModel model)
         {
-            throw new NotImplementedException();
+            var meetup = GetQuery().FirstOrDefault(x => x.Id == id);
+
+            if (meetup == null)
+            {
+                throw new NotFoundException("Meetup[" + id + "] not found");
+            }
+
+            meetup.Title = model.Title;
+            meetup.Description = model.Description;
+            meetup.ParticipantCount = model.ParticipantCount;
+            meetup.Date = model.Date;
+            meetup.Place = model.Place;
+            meetup.Plz = model.Plz;
+
+            await _unitOfOfWork.CommitAsync();
+            return meetup;
+        }
+
+        private IQueryable<Meetup> GetQuery()
+        {
+            var q = _unitOfOfWork.Query<Meetup>()
+                .Where(x => !x.IsCancled && x.Date > DateTime.UtcNow);
+
+            if (!_securityContext.IsAdministrator)
+            {
+                //handle not admin specific data access
+            }
+
+            return q;
         }
     }
 }

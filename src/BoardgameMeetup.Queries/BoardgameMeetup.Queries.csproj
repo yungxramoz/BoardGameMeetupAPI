@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BoardgameMeetup.Api.Common\BoardgameMeetup.Api.Common.csproj" />
     <ProjectReference Include="..\BoardgameMeetup.Api.Models\BoardgameMeetup.Api.Models.csproj" />
     <ProjectReference Include="..\BoardgameMeetup.Data.Access\BoardgameMeetup.Data.Access.csproj" />
     <ProjectReference Include="..\BoardgameMeetup.Data.Models\BoardgameMeetup.Data.Models.csproj" />
