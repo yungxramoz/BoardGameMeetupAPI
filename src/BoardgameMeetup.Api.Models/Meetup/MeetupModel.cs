@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BoardgameMeetup.Api.Models.Meetup
 {
@@ -15,5 +13,6 @@ namespace BoardgameMeetup.Api.Models.Meetup
         public int Plz { get; set; }
         
         public Guid UserId { get; set; }
+        public string Username { get; set; }
     }
 }
