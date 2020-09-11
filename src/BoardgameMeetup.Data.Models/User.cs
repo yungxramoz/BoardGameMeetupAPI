@@ -16,8 +16,6 @@ namespace BoardgameMeetup.Data.Models
         public string Password { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Address { get; set; }
-        public int Plz { get; set; }
         public bool IsDeleted { get; set; }
 
         public virtual IList<UserRole> Roles { get; set; }
