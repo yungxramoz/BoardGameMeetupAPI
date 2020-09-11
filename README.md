@@ -1,5 +1,5 @@
 # BoardGameMeetupAPI
-Boardgame Meetup API Brettspiele treffen zu erstellen, managen und zu planen. User können Events erstellen oder welchen beitreten, die noch nicht komplett gefüllt sind.
+Boardgame Meetup API Brettspiele treffen zu erstellen, managen und zu planen. User können Events erstellen oder welchen beitreten, die noch nicht komplett besetzt sind.
 ## Inhalt
 * [Technologien](#technologien)
 * [Setup](#setup)
@@ -9,7 +9,6 @@ Boardgame Meetup API Brettspiele treffen zu erstellen, managen und zu planen. Us
 Das Projekt wurde erstellt mit:
 * .NET Core 3.1
 * .NET Standard 2.0
-* PostgreSQL [Version]
 ## Setup
 How to run a project? Does a project has minimum hardware requirements?
 
