@@ -13,6 +13,8 @@ namespace BoardgameMeetup.Api.Models.User
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
+        [Required]
+        public string Username { get; set; }
 
         public string[] Roles { get; set; }
     }
